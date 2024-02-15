@@ -31,7 +31,8 @@ fi
 # Change the version number, or do a dry run
 if [ "$2" == "dry" ]
 then
-    echo "Would change to v$MAJOR.$MINOR.$FIX"
+    echo "Preview:"
+    sed -e 's,VERSION = .*$,VERSION = \\"v'$MAJOR'\.'$MINOR'\.'$FIX'\\",' $VERSION_FILE | grep VERSION 
 else
-    sed -i -e "s/VERSION = .*$/VERSION = \\\"v$MAJOR\.$MINOR\.$FIX\\\"/" $VERSION_FILE
+    sed -i -e 's,VERSION = .*$,VERSION = \\"v'$MAJOR'\.'$MINOR'\.'$FIX'\\",' $VERSION_FILE 
 fi
